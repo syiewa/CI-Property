@@ -40,35 +40,35 @@ class M_places extends MY_Model {
             if ($options['type'] == 0) {
                 $str .= '';
             } else {
-                $str .= 'AND d.id_type = ' . $options['type'];
+                $str .= 'AND d.id_type = ' . $this->db->escape($options['type']);
             }
         }
         if ($options['city'] != '') {
-            $str .= ' AND m.town LIKE "%' . $options['city'] . '%"';
+            $str .= ' AND m.town LIKE "%' . $this->db->escape($options['city']) . '%"';
         }
         if ($options['minbed'] != '') {
-            $str .= ' AND d.bedrooms >=' . $options['minbed'];
+            $str .= ' AND d.bedrooms >=' . $this->db->escape($options['minbed']);
         }
         if ($options['maxbed'] != '') {
-            $str .= ' AND d.bedrooms <=' . $options['maxbed'];
+            $str .= ' AND d.bedrooms <=' . $this->db->escape($options['maxbed']);
         }
         if ($options['minbath'] != '') {
-            $str .= ' AND d.bathrooms >=' . $options['minbath'];
+            $str .= ' AND d.bathrooms >=' . $this->db->escape($options['minbath']);
         }
         if ($options['maxbath'] != '') {
-            $str .= ' AND d.bathrooms <=' . $options['maxbath'];
+            $str .= ' AND d.bathrooms <=' . $this->db->escape($options['maxbath']);
         }
         if ($options['minprice'] != '') {
-            $str .= ' AND d.prices >=' . $options['minprice'];
+            $str .= ' AND d.prices >=' . $this->db->escape($options['minprice']);
         }
         if ($options['maxprice'] != '') {
-            $str .= ' AND d.prices <=' . $options['maxprice'];
+            $str .= ' AND d.prices <=' . $this->db->escape($options['maxprice']);
         }
         if ($options['minfloor'] != '') {
-            $str .= ' AND d.floor_dim >=' . $options['minfloor'];
+            $str .= ' AND d.floor_dim >=' . $this->db->escape($options['minfloor']);
         }
         if ($options['maxfloor'] != '') {
-            $str .= ' AND d.floor_dim <=' . $options['maxfloor'];
+            $str .= ' AND d.floor_dim <=' . $this->db->escape($options['maxfloor']);
         }
         if (!$status) {
             $str .= ' AND p.status_places =0';
