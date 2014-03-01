@@ -89,7 +89,7 @@ class Places extends Admin_Controller {
     public function search($offset = 0) {
         $options = $this->m_places->array_from_post(array('title_s', 'type', 'city', 'minbed', 'maxbed', 'minbath', 'maxbath', 'minprice', 'maxprice', 'minfloor', 'maxfloor'));
         if ($this->form_validation->run('search')) {
-            $count = $this->m_places->search($options);
+            $count = $this->m_places->search($options, $status = FALSE);
             $perpage = getOptions('paging');
             if (count($count) > $perpage) {
                 $this->load->library('pagination');
@@ -104,7 +104,7 @@ class Places extends Admin_Controller {
                 $offset = 0;
             }
             $status = $this->m_places->status_place;
-            $telo = $this->m_places->search($options, $perpage, $offset);
+            $telo = $this->m_places->search($options, $status = FALSE, $perpage, $offset);
             $str = '';
             if ($telo) {
                 $str .= '<table class="table table-bordered table-condensed"">

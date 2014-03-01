@@ -8,7 +8,6 @@
         <h1>Property</h1>
     </hgroup>
     <div id="result">
-
     </div>
 </div>
 <script>

@@ -34,10 +34,14 @@ class M_places extends MY_Model {
         parent::set_tabel('places', 'id_places');
     }
 
-    public function search($options = array(), $status = true,$limit = 5, $offset = 0) {
+    public function search($options = array(), $status = true, $limit = 5, $offset = 0) {
         $str = '';
         if (isset($options['type'])) {
-            $str .= 'AND d.id_type = ' . $options['type'];
+            if ($options['type'] == 0) {
+                $str .= '';
+            } else {
+                $str .= 'AND d.id_type = ' . $options['type'];
+            }
         }
         if ($options['city'] != '') {
             $str .= ' AND m.town LIKE "%' . $options['city'] . '%"';
@@ -66,7 +70,7 @@ class M_places extends MY_Model {
         if ($options['maxfloor'] != '') {
             $str .= ' AND d.floor_dim <=' . $options['maxfloor'];
         }
-        if(!$status){
+        if (!$status) {
             $str .= ' AND p.status_places =0';
         }
         $search = $this->db->query('

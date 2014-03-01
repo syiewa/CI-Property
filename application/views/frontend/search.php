@@ -10,7 +10,7 @@
             <div class="form-group">
                 <label for="inputtype" class="col-md-3 control-label">Type</label>
                 <div class="col-md-8">
-                    <?php echo form_dropdown('type', $type, '', 'class="form-control" id="type"'); ?>
+                    <?php $type[0] = 'All Type';echo form_dropdown('type', $type, 0, 'class="form-control" id="type"'); ?>
                 </div>
             </div>
             <div class="form-group">
