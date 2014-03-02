@@ -126,6 +126,17 @@ class M_places extends MY_Model {
         return FALSE;
     }
 
+    public function get_pf_front($param) {
+        if (is_array($param)) {
+            $this->db->select('*');
+            $this->db->from($this->table_pf);
+            $this->db->join('features', 'features.id_features = ' . $this->table_pf . '.id_feature', 'left');
+            $this->db->where($param);
+            return $this->db->get()->result();
+        }
+        return FALSE;
+    }
+
     public function get_pf($param) {
         if (is_array($param)) {
             $this->db->where($param);

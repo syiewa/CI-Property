@@ -131,8 +131,8 @@ class Places extends Frontend_Controller {
         $this->data['meta_title'] = "View Details";
         $this->data['summary'] = $this->m_places->get($id);
         $this->data['detail'] = $this->m_places->get_detail(array('id_places' => $id));
-        $this->data['feat_property'] = $this->m_options->get_many_by_feat(array('type_features' => 1));
-        $this->data['feat_com'] = $this->m_options->get_many_by_feat(array('type_features' => 0));
+        $this->data['feat_property'] = $this->m_places->get_pf_front(array('id_places' => $id,'type_features' => 1));
+        $this->data['feat_com'] = $this->m_places->get_pf_front(array('id_places' => $id,'type_features' => 0));
         $this->data['owner'] = $this->m_places->get_owner(array('id_places' => $id));
         $this->data['location'] = $this->m_places->get_map(array('id_places' => $id));
         $this->data['image'] = $this->m_places->get_img(array('id_places' => $id))->result();

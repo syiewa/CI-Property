@@ -85,11 +85,12 @@
                                     <img class="thumbnail img-responsive" src="<?php echo base_url('assets/img/timthumb.php'); ?>?src=<?php echo base_url($img->image); ?>&zc=0&h=140&w=180">
                                 </a>
                             </div>
-                        <?php endforeach;
+                            <?php
+                        endforeach;
                     else:
                         ?>
                         Photo's is not provided
-<?php endif; ?>
+                    <?php endif; ?>
                 </div>
             </div>
             <span class="btn btn-primary btn-block disabled" role="button"><h4>Maps</h4></span>
@@ -102,7 +103,7 @@
                             <?php echo $map['html']; ?>
                         <?php else: ?>
                             Location is not provided
-<?php endif; ?>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -110,7 +111,7 @@
             <hr>
             <div class="panel panel-default">
                 <div class="panel-body">
-<?php if ($location): ?>
+                    <?php if ($location): ?>
                         <dl>
                             <dt>Address</dt>
                             <dd><?php echo $location->address; ?></dd>
@@ -121,7 +122,7 @@
                             <dt>Country</dt>
                             <dd><?php echo $location->country; ?></dd>
                         </dl>
-<?php endif; ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -131,7 +132,7 @@
         <hr>
         <div class="col-md-8">
             <div class="well well-sm">
-                <form>
+                <form id='form-message'>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -166,16 +167,16 @@
         </div>
         <div class="col-md-4">
             <legend><span class="glyphicon glyphicon-globe"></span> Owner Address</legend>
-<?php if ($owner): ?>
+            <?php if ($owner): ?>
                 <address>
                     <strong><?php echo $owner->name_owner; ?></strong><br>
                     <i class="fa fa-map-marker"></i> <?php echo $owner->adds_owner; ?><br />
                     <abbr title="Phone">
                         <i class="fa fa-phone"></i></abbr>
-    <?php echo $owner->telp_owner; ?><br/>
+                    <?php echo $owner->telp_owner; ?><br/>
                     <abbr title="Phone">
                         <i class="fa fa-mobile-phone"></i></abbr>
-    <?php echo $owner->mob_owner; ?>
+                        <?php echo $owner->mob_owner; ?>
                 </address>
                 <address>
                     <strong><?php echo $owner->name_owner; ?></strong><br>
@@ -183,7 +184,7 @@
                 </address>
             <?php else: ?>
                 <p> No Preset Data</p>
-<?php endif; ?>
+            <?php endif; ?>
         </div>
     </div>
 </div>
@@ -202,6 +203,13 @@
                     height: 50
                 }
             }
+        });
+        $('#form-message').submit(function(e) {
+            e.preventDefault();
+            $('#form-message input[type="text"]').val('');
+            $('#form-message input[type="email"]').val('');
+            $('#form-message textarea').val('');
+            $.notify("Message send", {position: "top center", className: "success"});
         });
     });
 </script>
